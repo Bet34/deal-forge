@@ -1,290 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deal Forge — Forge Profitable Deals That Print Money</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-        body { font-family: 'Inter', system_ui, sans-serif; }
-        .heading { font-family: 'Space Grotesk', sans-serif; }
-        .hero-bg {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deal Forge — Forge Profitable Deals That Print Money</title>
+  <meta name="description" content="Deal Forge: AI deal scanner, profit calculator, +EV betting edges, repair-flip guides, content assets. Built for hustlers.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .heading { font-family: 'Space Grotesk', sans-serif; }
+    .focus-ring:focus { outline: 2px solid #10b981; outline-offset: 2px; }
+  </style>
 </head>
-<body class="bg-zinc-950 text-white">
-    <!-- Navbar -->
-    <nav class="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-lg fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-x-3">
-                <div class="w-9 h-9 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-2xl flex items-center justify-center text-xl font-bold">🔨</div>
-                <span class="heading text-2xl font-semibold tracking-tighter">Deal Forge</span>
-            </div>
-            <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
-                <a href="#deals" class="hover:text-emerald-400 transition-colors">Live Deals</a>
-                <a href="#tools" class="hover:text-emerald-400 transition-colors">Forge Tools</a>
-                <a href="#hustles" class="hover:text-emerald-400 transition-colors">Niche Hustles</a>
-                <a href="#community" class="hover:text-emerald-400 transition-colors">Forge Community</a>
-            </div>
-            <div class="flex items-center gap-x-4">
-                <a href="#" class="text-sm font-medium px-6 py-2.5 rounded-2xl border border-zinc-700 hover:border-white transition-colors">Log in</a>
-                <a href="#" onclick="showForgeModal()" class="text-sm font-semibold px-8 py-2.5 bg-white text-black rounded-2xl hover:bg-emerald-400 hover:text-white transition-all">Start Forging</a>
-            </div>
-        </div>
-    </nav>
+<body class="bg-zinc-950 text-white antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-emerald-500 text-black px-4 py-2 rounded z-50">Skip to content</a>
 
+  <!-- Navbar -->
+  <header class="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-lg fixed w-full z-50">
+    <nav class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between" aria-label="Main navigation">
+      <div class="flex items-center gap-x-3">
+        <div class="w-9 h-9 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-2xl flex items-center justify-center text-xl font-bold" aria-hidden="true">🔨</div>
+        <span class="heading text-2xl font-semibold tracking-tighter">Deal Forge</span>
+      </div>
+      <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+        <a href="#deals" class="hover:text-emerald-400 transition-colors">Live Deals</a>
+        <a href="#calc" class="hover:text-emerald-400 transition-colors">Profit Calc</a>
+        <a href="#tools" class="hover:text-emerald-400 transition-colors">Forge Tools</a>
+        <a href="#hustles" class="hover:text-emerald-400 transition-colors">Niche Hustles</a>
+      </div>
+      <div class="flex items-center gap-x-4">
+        <button id="menuBtn" class="md:hidden p-2" aria-expanded="false" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <a href="#cta" class="hidden md:inline-block text-sm font-semibold px-8 py-2.5 bg-white text-black rounded-2xl hover:bg-emerald-400 hover:text-white transition-all">Start Forging</a>
+      </div>
+    </nav>
+    <div id="mobileMenu" class="hidden md:hidden bg-zinc-900 border-t border-zinc-800 px-6 py-4 space-y-3">
+      <a href="#deals" class="block py-2">Live Deals</a>
+      <a href="#calc" class="block py-2">Profit Calc</a>
+      <a href="#tools" class="block py-2">Forge Tools</a>
+      <a href="#hustles" class="block py-2">Niche Hustles</a>
+      <a href="#cta" class="block py-2 text-emerald-400 font-semibold">Start Forging</a>
+    </div>
+  </header>
+
+  <main id="main">
     <!-- Hero -->
-    <section class="hero-bg pt-32 pb-24">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <div class="inline-flex items-center gap-2 bg-zinc-900/80 px-5 py-2 rounded-3xl text-sm mb-6 border border-emerald-500/30">
-                <span class="text-emerald-400">🚀</span> 
-                <span>New: AI-Powered Deal Scanner Live</span>
-            </div>
-            
-            <h1 class="heading text-7xl md:text-8xl font-bold tracking-tighter leading-none mb-6">
-                Forge deals.<br>
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-cyan-400 to-white">Print money.</span>
-            </h1>
-            
-            <p class="text-2xl text-zinc-400 max-w-2xl mx-auto mb-10">
-                The ultimate platform for hustlers: discover +EV deals, analyze flips, line-shop bets, source content assets, and build empires in real-time.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#" onclick="showForgeModal()" class="group inline-flex items-center justify-center gap-3 bg-white hover:bg-emerald-400 text-black hover:text-white px-10 py-6 rounded-3xl text-xl font-semibold transition-all duration-300">
-                    Forge Your First Deal Free
-                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
-                </a>
-                <a href="#deals" class="inline-flex items-center justify-center gap-3 border border-zinc-700 hover:border-white px-8 py-6 rounded-3xl text-xl font-medium transition-all">
-                    Browse Live Deals
-                </a>
-            </div>
-            
-            <div class="mt-12 flex justify-center gap-8 text-sm text-zinc-500">
-                <div class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> No card needed</div>
-                <div class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Real-time edges</div>
-                <div class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Hustler-verified</div>
-            </div>
+    <section class="pt-32 pb-24 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <div class="inline-flex items-center gap-2 bg-zinc-900/80 px-5 py-2 rounded-3xl text-sm mb-6 border border-emerald-500/30">
+          <span class="text-emerald-400">🚀</span>
+          <span>New: Profit Calculator + AI Deal Scanner</span>
         </div>
+        <h1 class="heading text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-6">
+          Forge deals.<br>
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-cyan-400 to-white">Print money.</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto mb-10">
+          Discover +EV flips, calculate real profit after fees, line-shop bets, source content assets, and track repair-flips. Built for hustlers who track the numbers.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="#cta" class="inline-flex items-center justify-center gap-3 bg-white hover:bg-emerald-400 text-black hover:text-white px-10 py-5 rounded-3xl text-lg font-semibold transition-all">
+            Start Forging Free
+          </a>
+          <a href="#calc" class="inline-flex items-center justify-center gap-3 border border-zinc-700 hover:border-white px-8 py-5 rounded-3xl text-lg font-medium transition-all">
+            Try Profit Calculator
+          </a>
+        </div>
+      </div>
     </section>
 
     <!-- Trust Bar -->
     <div class="bg-zinc-900 py-6 border-b border-zinc-800">
-        <div class="max-w-5xl mx-auto px-6 flex flex-wrap justify-center items-center gap-x-12 gap-y-4 text-sm opacity-75">
-            <div class="flex items-center gap-3">Used by <span class="font-semibold text-white">2,847</span> Downriver Hustlers</div>
-            <div class="h-4 w-px bg-zinc-700"></div>
-            <div>$1.2M+ in deals forged last month</div>
-            <div class="h-4 w-px bg-zinc-700"></div>
-            <div class="flex items-center gap-1">4.98 <span class="text-amber-400">★</span></div>
-        </div>
+      <div class="max-w-5xl mx-auto px-6 flex flex-wrap justify-center items-center gap-x-12 gap-y-4 text-sm opacity-75">
+        <div>Used by <span class="font-semibold text-white">2,847</span> hustlers</div>
+        <div class="hidden sm:block h-4 w-px bg-zinc-700"></div>
+        <div>$1.2M+ tracked last month</div>
+        <div class="hidden sm:block h-4 w-px bg-zinc-700"></div>
+        <div>4.98 ★ average</div>
+      </div>
     </div>
 
-    <!-- Live Deals -->
-    <section id="deals" class="py-24 bg-zinc-950">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <span class="text-emerald-400 text-sm font-mono tracking-widest">LIVE 🔥</span>
-                    <h2 class="heading text-5xl font-bold tracking-tighter">Hot Deals Forged Right Now</h2>
-                </div>
-                <a href="#" class="text-emerald-400 hover:underline flex items-center gap-2">See all deals <i class="fas fa-arrow-right"></i></a>
+    <!-- Profit Calculator -->
+    <section id="calc" class="py-20 border-t border-zinc-800">
+      <div class="max-w-xl mx-auto px-6">
+        <h2 class="heading text-4xl font-bold text-center mb-4">Profit Calculator</h2>
+        <p class="text-center text-zinc-400 mb-10">Know the real number before you buy.</p>
+        <div class="bg-zinc-900 rounded-3xl p-8">
+          <form id="calcForm" class="space-y-5">
+            <div>
+              <label for="buy" class="block text-sm font-medium mb-1">Buy price ($)</label>
+              <input type="number" id="buy" step="0.01" min="0" required class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 focus-ring" placeholder="25.00">
             </div>
-            
-            <div class="grid md:grid-cols-3 gap-6" id="deals-grid">
-                <!-- JS populated -->
+            <div>
+              <label for="sell" class="block text-sm font-medium mb-1">Expected sell price ($)</label>
+              <input type="number" id="sell" step="0.01" min="0" required class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 focus-ring" placeholder="75.00">
             </div>
+            <div>
+              <label for="fees" class="block text-sm font-medium mb-1">Fees % (platform)</label>
+              <input type="number" id="fees" step="0.1" min="0" max="100" value="13" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 focus-ring">
+            </div>
+            <div>
+              <label for="ship" class="block text-sm font-medium mb-1">Shipping / extra costs ($)</label>
+              <input type="number" id="ship" step="0.01" min="0" value="8" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 focus-ring">
+            </div>
+            <button type="submit" class="w-full bg-emerald-500 text-black font-semibold py-3 rounded-xl hover:bg-emerald-400 transition">Calculate</button>
+          </form>
+          <div id="result" class="mt-8 hidden text-center">
+            <div class="text-3xl font-bold text-emerald-400" id="netProfit">$0.00</div>
+            <div class="text-zinc-400">Net profit</div>
+            <div class="mt-4 text-xl" id="roi">0% ROI</div>
+            <div class="text-sm mt-2" id="verdict"></div>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Live Deals -->
+    <section id="deals" class="py-20 bg-zinc-950">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-end mb-12">
+          <div>
+            <span class="text-emerald-400 text-sm font-mono tracking-widest">LIVE</span>
+            <h2 class="heading text-4xl md:text-5xl font-bold tracking-tighter">Hot Deals Right Now</h2>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6" id="deals-grid"></div>
+      </div>
     </section>
 
     <!-- Forge Tools -->
-    <section id="tools" class="py-24 border-t border-zinc-800">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="heading text-5xl font-bold tracking-tighter text-center mb-4">Your Deal Forging Arsenal</h2>
-            <p class="text-center text-zinc-400 max-w-md mx-auto mb-16">AI + community powered tools built for maximum edge.</p>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-zinc-900 p-8 rounded-3xl group hover:scale-[1.02] transition-all border border-transparent hover:border-emerald-500/50">
-                    <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl">📊</div>
-                    <h3 class="text-2xl font-semibold mb-3">Deal Analyzer</h3>
-                    <p class="text-zinc-400 mb-6">Input any opportunity. Get IRR, ROI, risk score, competitor comps in seconds.</p>
-                    <button onclick="alert('Deal Analyzer opening... (demo)')" class="w-full py-4 bg-zinc-800 hover:bg-white hover:text-black rounded-2xl font-medium transition">Launch Analyzer</button>
-                </div>
-                
-                <div class="bg-zinc-900 p-8 rounded-3xl group hover:scale-[1.02] transition-all border border-transparent hover:border-emerald-500/50">
-                    <div class="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl">🎰</div>
-                    <h3 class="text-2xl font-semibold mb-3">Betting Edge Scanner</h3>
-                    <p class="text-zinc-400 mb-6">Line shop across books, find +EV props, bankroll sims. Real-time sharp money alerts.</p>
-                    <button onclick="alert('Edge Scanner loading... (demo)')" class="w-full py-4 bg-zinc-800 hover:bg-white hover:text-black rounded-2xl font-medium transition">Scan Edges</button>
-                </div>
-                
-                <div class="bg-zinc-900 p-8 rounded-3xl group hover:scale-[1.02] transition-all border border-transparent hover:border-emerald-500/50">
-                    <div class="w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl">📹</div>
-                    <h3 class="text-2xl font-semibold mb-3">Content Asset Forge</h3>
-                    <p class="text-zinc-400 mb-6">Source viral clips, generate prompts, monetize adult/niche content empires.</p>
-                    <button onclick="alert('Content Forge activating... (demo)')" class="w-full py-4 bg-zinc-800 hover:bg-white hover:text-black rounded-2xl font-medium transition">Forge Content</button>
-                </div>
-                
-                <div class="bg-zinc-900 p-8 rounded-3xl group hover:scale-[1.02] transition-all border border-transparent hover:border-emerald-500/50">
-                    <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl">🔧</div>
-                    <h3 class="text-2xl font-semibold mb-3">Repair & Flip DB</h3>
-                    <p class="text-zinc-400 mb-6">Parts lists, torque specs, DIY guides for cars, appliances, gear flips. (Taurus blower motor ready)</p>
-                    <button onclick="alert('Repair DB opening... (demo)')" class="w-full py-4 bg-zinc-800 hover:bg-white hover:text-black rounded-2xl font-medium transition">Browse Guides</button>
-                </div>
-            </div>
+    <section id="tools" class="py-20 border-t border-zinc-800">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="heading text-4xl md:text-5xl font-bold tracking-tighter text-center mb-4">Your Deal Forging Arsenal</h2>
+        <p class="text-center text-zinc-400 max-w-md mx-auto mb-16">Tools built for maximum edge.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="bg-zinc-900 p-8 rounded-3xl border border-transparent hover:border-emerald-500/50 transition">
+            <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl" aria-hidden="true">📊</div>
+            <h3 class="text-2xl font-semibold mb-3">Deal Analyzer</h3>
+            <p class="text-zinc-400 mb-6">ROI, risk, comps in seconds.</p>
+            <button class="w-full py-4 bg-zinc-800 hover:bg-white hover:text-black rounded-2xl font-medium transition" onclick="alert('Analyzer demo — full version in dashboard.')">Launch</button>
+          </div>
+          <div class="bg-zinc-900 p-8 rounded-3xl border border-transparent hover:border-emerald-500/50 transition">
+            <div class="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl" aria-hidden="true">🎰</div>
+            <h3 class="text-2xl font-semibold mb-3">Betting Edge Scanner</h3>
+            <p class="text-zinc-400 mb-6">Line shop, +EV props, alerts.</p>
+            <button class="w-full py-4 bg-zinc-800 hover:bg-white hover:text-black rounded-2xl font-medium transition" onclick="alert('Edge scanner demo.')">Scan</button>
+          </div>
+          <div class="bg-zinc-900 p-8 rounded-3xl border border-transparent hover:border-emerald-500/50 transition">
+            <div class="w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl" aria-hidden="true">📹</div>
+            <h3 class="text-2xl font-semibold mb-3">Content Asset Forge</h3>
+            <p class="text-zinc-400 mb-6">Viral clips and prompts.</p>
+            <button class="w-full py-4 bg-zinc-800 hover:bg-white hover:text-black rounded-2xl font-medium transition" onclick="alert('Content forge demo.')">Forge</button>
+          </div>
+          <div class="bg-zinc-900 p-8 rounded-3xl border border-transparent hover:border-emerald-500/50 transition">
+            <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 text-3xl" aria-hidden="true">🔧</div>
+            <h3 class="text-2xl font-semibold mb-3">Repair & Flip DB</h3>
+            <p class="text-zinc-400 mb-6">Parts, torque, DIY guides.</p>
+            <button class="w-full py-4 bg-zinc-800 hover:bg-white hover:text-black rounded-2xl font-medium transition" onclick="alert('Repair DB demo.')">Browse</button>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Hustles -->
-    <section id="hustles" class="py-24 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="heading text-5xl font-bold tracking-tighter text-center mb-16">Proven Hustle Niches — Downriver Tested</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-zinc-950 p-8 rounded-3xl">
-                    <div class="text-5xl mb-6">🏠</div>
-                    <h3 class="text-2xl font-semibold">Real Estate Micro-Flips</h3>
-                    <p class="text-zinc-400 mt-3">Off-market deals, quick reno calculators, buyer matching. Local Metro Detroit focus.</p>
-                </div>
-                <div class="bg-zinc-950 p-8 rounded-3xl">
-                    <div class="text-5xl mb-6">🎰</div>
-                    <h3 class="text-2xl font-semibold">+EV Sports & Casino Edges</h3>
-                    <p class="text-zinc-400 mt-3">Line shopping, prop research, bankroll sims, recovery protocols after bad runs or seized funds.</p>
-                </div>
-                <div class="bg-zinc-950 p-8 rounded-3xl">
-                    <div class="text-5xl mb-6">🔧</div>
-                    <h3 class="text-2xl font-semibold">Repair & Flip Empire</h3>
-                    <p class="text-zinc-400 mt-3">2013 Ford Taurus blower motor/electrical, appliances, tactical gear. Exact parts + torque specs.</p>
-                </div>
-            </div>
+    <section id="hustles" class="py-20 bg-zinc-900">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="heading text-4xl md:text-5xl font-bold tracking-tighter text-center mb-16">Proven Hustle Niches</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-zinc-950 p-8 rounded-3xl">
+            <div class="text-5xl mb-6" aria-hidden="true">🏠</div>
+            <h3 class="text-2xl font-semibold">Real Estate Micro-Flips</h3>
+            <p class="text-zinc-400 mt-3">Off-market deals and quick reno math. Local focus.</p>
+          </div>
+          <div class="bg-zinc-950 p-8 rounded-3xl">
+            <div class="text-5xl mb-6" aria-hidden="true">🎰</div>
+            <h3 class="text-2xl font-semibold">+EV Sports & Casino Edges</h3>
+            <p class="text-zinc-400 mt-3">Line shopping, prop research, bankroll control.</p>
+          </div>
+          <div class="bg-zinc-950 p-8 rounded-3xl">
+            <div class="text-5xl mb-6" aria-hidden="true">🔧</div>
+            <h3 class="text-2xl font-semibold">Repair & Flip Empire</h3>
+            <p class="text-zinc-400 mt-3">Cars, appliances, gear. Exact parts and specs.</p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- Community / Forge -->
-    <section id="community" class="py-24 border-t border-zinc-800">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <h2 class="heading text-5xl font-bold tracking-tighter mb-6">The Forge Community</h2>
-            <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-10">Private group of unbreakable hustlers sharing live deals, recovery wins, and empire plays. First 500 get lifetime pro access.</p>
-            <button onclick="showForgeModal()" class="px-12 py-6 bg-emerald-500 hover:bg-emerald-400 text-black text-2xl font-semibold rounded-3xl transition">Join the Forge</button>
+    <!-- CTA -->
+    <section id="cta" class="py-20 border-t border-zinc-800">
+      <div class="max-w-2xl mx-auto px-6 text-center">
+        <div class="bg-zinc-900 rounded-3xl p-8 md:p-12">
+          <h2 class="heading text-4xl font-bold mb-4">Ready to forge?</h2>
+          <p class="text-zinc-400 mb-8">Early access to the full scanner and tracker. Free to start.</p>
+          <form id="leadForm" class="space-y-4 max-w-md mx-auto">
+            <label for="email" class="sr-only">Email address</label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com" class="w-full bg-zinc-800 border border-zinc-700 rounded-xl px-4 py-3 focus-ring" aria-required="true">
+            <button type="submit" class="w-full bg-emerald-500 text-black font-semibold py-3 rounded-xl hover:bg-emerald-400 transition">Get Free Access</button>
+            <p id="formMsg" class="text-sm hidden" role="status"></p>
+          </form>
+          <p class="text-xs text-zinc-500 mt-4">No spam. Unsubscribe anytime.</p>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- Final CTA -->
-    <div class="bg-gradient-to-r from-emerald-600 to-cyan-600 py-16">
-        <div class="max-w-4xl mx-auto text-center px-6">
-            <h2 class="text-5xl font-bold tracking-tighter mb-6">Ready to forge your first empire?</h2>
-            <p class="text-xl mb-8">Turn $0 into real money. No card. Instant access.</p>
-            <button onclick="showForgeModal()" class="px-12 py-6 bg-white text-black text-2xl font-semibold rounded-3xl hover:scale-105 transition">Claim Your Forge Access →</button>
-        </div>
-    </div>
+  <footer class="bg-black py-12 border-t border-zinc-900 text-center text-sm text-zinc-500">
+    <p>Deal Forge. Built for hustlers who track the numbers.</p>
+  </footer>
 
-    <!-- Footer -->
-    <footer class="bg-black py-20 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-12 text-sm">
-            <div class="col-span-2">
-                <div class="flex items-center gap-x-3 mb-6">
-                    <div class="w-8 h-8 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-2xl flex items-center justify-center">🔨</div>
-                    <span class="heading text-3xl font-semibold">Deal Forge</span>
-                </div>
-                <p class="text-zinc-500">Built for the unbreakable hustlers turning nothing into everything. Downriver grit meets empire math.</p>
-            </div>
-            <div>
-                <div class="font-semibold mb-4">Platform</div>
-                <div class="space-y-2 text-zinc-400">
-                    <div>Live Deals</div>
-                    <div>Forge Tools</div>
-                    <div>Pro Access</div>
-                </div>
-            </div>
-            <div>
-                <div class="font-semibold mb-4">Hustles</div>
-                <div class="space-y-2 text-zinc-400">
-                    <div>Flips & Repairs</div>
-                    <div>Betting Edges</div>
-                    <div>Content Empires</div>
-                </div>
-            </div>
-            <div>
-                <div class="font-semibold mb-4">Support</div>
-                <div class="space-y-2 text-zinc-400">
-                    <div>Recovery Protocols</div>
-                    <div>Community</div>
-                    <div>GitHub Deploy</div>
-                </div>
-            </div>
-        </div>
-    </footer>
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      const isHidden = mobileMenu.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', !isHidden);
+    });
 
-    <!-- Forge Modal -->
-    <div id="forgeModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[100]">
-        <div class="bg-zinc-900 rounded-3xl max-w-md w-full mx-4 p-10">
-            <h3 class="text-3xl font-semibold mb-2">Forge a Deal</h3>
-            <p class="text-zinc-400 mb-8">What are you hunting for today? (Taurus repair, +EV prop, pallet flip, content asset...)</p>
-            <div class="space-y-4">
-                <input id="dealInput" type="text" placeholder="e.g. 2013 Ford Taurus blower motor deal or NBA prop edge" class="w-full bg-zinc-800 border border-zinc-700 rounded-2xl px-6 py-5 focus:outline-none focus:border-emerald-400">
-                <button onclick="forgeDeal()" class="w-full py-6 bg-emerald-500 hover:bg-emerald-400 text-black font-semibold rounded-3xl transition">Forge It Now</button>
-            </div>
-            <button onclick="hideForgeModal()" class="mt-6 text-zinc-400 hover:text-white w-full">Cancel</button>
-        </div>
-    </div>
+    // Profit calculator
+    document.getElementById('calcForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const buy = parseFloat(document.getElementById('buy').value) || 0;
+      const sell = parseFloat(document.getElementById('sell').value) || 0;
+      const feePct = parseFloat(document.getElementById('fees').value) || 0;
+      const ship = parseFloat(document.getElementById('ship').value) || 0;
+      const feeAmount = sell * (feePct / 100);
+      const net = sell - feeAmount - ship - buy;
+      const roi = buy > 0 ? ((net / buy) * 100).toFixed(1) : 0;
+      document.getElementById('netProfit').textContent = '$' + net.toFixed(2);
+      document.getElementById('roi').textContent = roi + '% ROI';
+      const verdict = document.getElementById('verdict');
+      if (net > 20 && parseFloat(roi) > 50) {
+        verdict.textContent = 'Solid flip. Buy it.';
+        verdict.className = 'text-sm text-emerald-400 mt-2';
+      } else if (net > 0) {
+        verdict.textContent = 'Marginal. Check comps.';
+        verdict.className = 'text-sm text-yellow-400 mt-2';
+      } else {
+        verdict.textContent = 'Pass.';
+        verdict.className = 'text-sm text-red-400 mt-2';
+      }
+      document.getElementById('result').classList.remove('hidden');
+    });
 
-    <script>
-        function initDeals() {
-            const deals = [
-                { title: "Pallets of Overstock Tech - 65% off", roi: "240%", niche: "Flipping" },
-                { title: "+EV NBA Prop: Tatum Points Line Shop", roi: "+18%", niche: "Betting" },
-                { title: "Viral TikTok Adult Clip Pack + Prompts", roi: "Infinite", niche: "Content" },
-                { title: "2013 Ford Taurus Blower Motor + Full Repair Kit", roi: "380%", niche: "Repair Flip" }
-            ];
-            
-            let html = '';
-            deals.forEach(deal => {
-                html += `
-                    <div class="bg-zinc-900 rounded-3xl p-8 hover:ring-2 hover:ring-emerald-400/50 transition-all group">
-                        <div class="flex justify-between mb-6">
-                            <span class="px-4 py-1 bg-emerald-500/10 text-emerald-400 text-xs rounded-full">${deal.niche}</span>
-                            <span class="text-emerald-400 font-mono">ROI ${deal.roi}</span>
-                        </div>
-                        <h4 class="text-xl font-semibold mb-3">${deal.title}</h4>
-                        <button onclick="claimDeal(this)" class="mt-8 w-full py-4 border border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-black rounded-2xl font-medium group-hover:scale-105 transition">Claim This Deal</button>
-                    </div>
-                `;
-            });
-            document.getElementById('deals-grid').innerHTML = html;
-        }
-        
-        function claimDeal(btn) {
-            btn.textContent = 'Forged ✓';
-            btn.disabled = true;
-            btn.classList.add('!bg-emerald-400', '!text-black');
-            setTimeout(() => alert('Deal claimed! Check your Forge dashboard. Real money moves start here.'), 300);
-        }
-        
-        function showForgeModal() {
-            document.getElementById('forgeModal').classList.remove('hidden');
-            document.getElementById('forgeModal').classList.add('flex');
-        }
-        
-        function hideForgeModal() {
-            document.getElementById('forgeModal').classList.add('hidden');
-            document.getElementById('forgeModal').classList.remove('flex');
-        }
-        
-        function forgeDeal() {
-            const input = document.getElementById('dealInput').value;
-            if (input) {
-                alert(`Forging deal for: ${input}\n\nAI scanning markets + community... Match found in 3s!\n\nNext: Line shop, parts list, or prompt ready.`);
-                hideForgeModal();
-            } else {
-                alert('Describe the deal you want to forge (e.g. Taurus repair, betting edge, content asset).');
-            }
-        }
-        
-        // Init
-        window.onload = function() {
-            initDeals();
-        };
-    </script>
+    // Live deals
+    function initDeals() {
+      const deals = [
+        { title: "Pallets of Overstock Tech - 65% off", roi: "240%", niche: "Flipping" },
+        { title: "+EV NBA Prop Line Shop", roi: "+18%", niche: "Betting" },
+        { title: "2013 Ford Taurus Blower Motor Kit", roi: "380%", niche: "Repair Flip" }
+      ];
+      let html = '';
+      deals.forEach(deal => {
+        html += `
+          <article class="bg-zinc-900 rounded-3xl p-8 hover:ring-2 hover:ring-emerald-400/50 transition">
+            <div class="flex justify-between mb-6">
+              <span class="px-4 py-1 bg-emerald-500/10 text-emerald-400 text-xs rounded-full">${deal.niche}</span>
+              <span class="text-emerald-400 font-mono">ROI ${deal.roi}</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-3">${deal.title}</h3>
+            <button class="mt-4 w-full py-3 border border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-black rounded-2xl font-medium transition" onclick="this.textContent='Claimed'; this.disabled=true;">Claim</button>
+          </article>
+        `;
+      });
+      document.getElementById('deals-grid').innerHTML = html;
+    }
+    initDeals();
+
+    // Lead form
+    document.getElementById('leadForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const msg = document.getElementById('formMsg');
+      msg.textContent = 'You’re in. Check email for access.';
+      msg.className = 'text-sm text-emerald-400 mt-2';
+      msg.classList.remove('hidden');
+      e.target.reset();
+    });
+  </script>
 </body>
 </html>
